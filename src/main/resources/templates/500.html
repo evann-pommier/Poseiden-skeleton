@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>500 - Server Error</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+        <h2>500 - Internal Server Error</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-danger" th:text="${errorMessage}">
+                An unexpected error occurred.
+            </div>
+            <a class="btn btn-primary btn-sm" href="/bidList/list">Back to Bid List</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

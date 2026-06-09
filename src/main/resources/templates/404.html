@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>404 - Not Found</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+        <h2>404 - Resource Not Found</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-danger" th:text="${errorMessage}">
+                The requested resource was not found.
+            </div>
+            <a class="btn btn-primary btn-sm" href="/bidList/list">Back to Bid List</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
