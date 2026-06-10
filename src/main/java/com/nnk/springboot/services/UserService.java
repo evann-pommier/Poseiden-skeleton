@@ -1,6 +1,7 @@
 package com.nnk.springboot.services;
 
 import com.nnk.springboot.domain.User;
+import com.nnk.springboot.exceptions.EntityNotFoundException;
 import com.nnk.springboot.repositories.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class UserService {
         return repository.findAll();
     }
     public User findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("User", id));
     }
 
     public User save(User user) {

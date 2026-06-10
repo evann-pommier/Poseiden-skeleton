@@ -1,6 +1,7 @@
 package com.nnk.springboot.services;
 
 import com.nnk.springboot.domain.Rating;
+import com.nnk.springboot.exceptions.EntityNotFoundException;
 import com.nnk.springboot.repositories.RatingRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class RatingService {
     }
 
     public Rating findById(Integer id){
-        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Rating Id:" + id));
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Rating:", id));
     }
 
     public Rating save(Rating rating){
