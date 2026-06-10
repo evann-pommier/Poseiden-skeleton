@@ -1,6 +1,7 @@
 package com.nnk.springboot.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,10 +11,12 @@ import javax.validation.constraints.Pattern;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "UserId")
     private Integer id;
     @NotBlank(message = "Username is mandatory")
     private String username;

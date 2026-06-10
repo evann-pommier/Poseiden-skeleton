@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public class RuleNameService {
-    private RuleNameRepository repository;
+    private final RuleNameRepository repository;
     public RuleNameService(RuleNameRepository ruleNameRepository) {
         this.repository = ruleNameRepository;
     }

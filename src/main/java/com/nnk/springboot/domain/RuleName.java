@@ -40,6 +40,5 @@ public class RuleName {
     }
 
     public String getSql() { return sqlStr; }
-    public void setSql(String sql) { this.sqlStr = sql; }
 
 }

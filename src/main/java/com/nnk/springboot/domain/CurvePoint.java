@@ -1,22 +1,25 @@
 package com.nnk.springboot.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
-
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "curvepoint")
 public class CurvePoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CurvePointId")
     private Integer id;
 
+    @NotNull(message = "Curve Id is mandatory")
     private Integer curveId;
 
     @NotNull(message = "Term is mandatory")
@@ -25,9 +28,7 @@ public class CurvePoint {
     @NotNull(message = "Value is mandatory")
     private Double value;
 
-    private Timestamp creationDate;
-
-    public CurvePoint() {}
+    private LocalDateTime creationDate;
 
     public CurvePoint(Integer curveId, Double term, Double value) {
         this.curveId = curveId;
