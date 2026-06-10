@@ -42,13 +42,13 @@ public class BidListController {
     }
 
     @GetMapping("/bidList/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+    public String showUpdateForm(@PathVariable Integer id, Model model) {
         model.addAttribute("bidList", service.findById(id));
         return "bidList/update";
     }
 
     @PostMapping("/bidList/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList, BindingResult result) {
+    public String updateBid(@PathVariable Integer id, @Valid BidList bidList, BindingResult result) {
         if(result.hasErrors()){
             bidList.setBidListId(id);
             return "bidList/update";
