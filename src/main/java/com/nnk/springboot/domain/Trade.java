@@ -1,6 +1,7 @@
 package com.nnk.springboot.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "trade")
 public class Trade {
     @Id
@@ -58,6 +60,4 @@ public class Trade {
         this.type = type;
         this.buyQuantity = 0d;
     }
-
-    public Trade() {}
 }

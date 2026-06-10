@@ -34,11 +34,11 @@ public class BidListController {
 
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result) {
-        if (result.hasErrors()) {
-            return "bidList/add";
+        if (!result.hasErrors()) {
+            service.save(bid);
+            return "redirect:/bidList/list";
         }
-        service.save(bid);
-        return "redirect:/bidList/list";
+        return "bidList/add";
     }
 
     @GetMapping("/bidList/update/{id}")

@@ -26,10 +26,12 @@ public class TradeService {
     public Trade save(Trade trade) {
         return this.repository.save(trade);
     }
-    public void update(Trade trade) {
+    public void update(Integer id, Trade trade) {
+        findById(id);
         this.repository.save(trade);
     }
     public void deleteById(Integer id) {
+        findById(id);
         this.repository.deleteById(id);
     }
 }
