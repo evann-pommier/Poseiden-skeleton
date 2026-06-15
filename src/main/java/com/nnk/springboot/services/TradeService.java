@@ -28,6 +28,7 @@ public class TradeService {
     }
     public void update(Integer id, Trade trade) {
         findById(id);
+        trade.setTradeId(id);
         this.repository.save(trade);
     }
     public void deleteById(Integer id) {
