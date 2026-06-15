@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      lang="fr">
 <head>
     <meta charset="utf-8"/>
     <title>404 - Not Found</title>
@@ -15,7 +16,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <div class="alert alert-danger" th:text="${errorMessage}">
+            <div class="alert alert-danger" th:text="${errorMsg}">
                 The requested resource was not found.
             </div>
             <a class="btn btn-primary btn-sm" href="/bidList/list">Back to Bid List</a>

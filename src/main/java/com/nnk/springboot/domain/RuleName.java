@@ -27,7 +27,6 @@ public class RuleName {
     String template;
     @NotBlank(message = "SqlStr is mandatory")
     String sqlStr;
-    @Column(name = "sqlPart")
     @NotBlank(message = "SqlPart is mandatory")
     String sqlPart;
 
