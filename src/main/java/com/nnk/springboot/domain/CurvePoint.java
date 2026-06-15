@@ -26,6 +26,7 @@ public class CurvePoint {
     private Double term;
 
     @NotNull(message = "Value is mandatory")
+    @Column(name = "curve_value")
     private Double value;
 
     private LocalDateTime creationDate;
