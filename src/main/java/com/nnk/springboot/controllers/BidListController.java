@@ -23,12 +23,13 @@ public class BidListController {
 
     @RequestMapping("/bidList/list")
     public String home(Model model) {
-        model.addAttribute("bidList", service.findAll());
+        model.addAttribute("bidLists", service.findAll());
         return "bidList/list";
     }
 
     @GetMapping("/bidList/add")
-    public String addBidForm() {
+    public String addBidForm(Model model) {
+        model.addAttribute("bidList", new BidList());
         return "bidList/add";
     }
 
