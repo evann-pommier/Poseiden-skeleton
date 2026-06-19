@@ -10,40 +10,54 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 
-
+/**
+ * Entité représentant un ordre de trading (achat ou vente d'un instrument financier).
+ *
+ * <p>Les champs obligatoires pour la saisie sont {@code account}, {@code type} et
+ * {@code buyQuantity}. Les autres champs (prix, audit, deal) sont optionnels et
+ * servent à enrichir le suivi de l'ordre.</p>
+ */
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @Table(name = "Trade")
 public class Trade {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TradeId")
     private Integer tradeId;
 
+    /** Compte sur lequel l'ordre est passé. Obligatoire. */
     @NotBlank(message = "Account is mandatory")
     private String account;
 
+    /** Type d'instrument ou de transaction. Obligatoire. */
     @NotBlank(message = "Type is mandatory")
     private String type;
 
+    /** Quantité à l'achat. Obligatoire, positive ou nulle. */
     @NotNull(message = "Buy Quantity is mandatory")
     @PositiveOrZero(message = "Buy Quantity must be numeric and positive or zero")
     @Column(name = "buyQuantity")
     private Double buyQuantity;
 
+    /** Quantité à la vente. Positive ou nulle. */
     @PositiveOrZero(message = "Sell Quantity must be numeric and positive or zero")
     @Column(name = "sellQuantity")
     private Double sellQuantity;
 
+    /** Prix d'achat. Positif ou nul. */
     @PositiveOrZero(message = "Buy Price must be numeric and positive or zero")
     @Column(name = "buyPrice")
     private Double buyPrice;
 
+    /** Prix de vente. Positif ou nul. */
     @PositiveOrZero(message = "Sell Price must be numeric and positive or zero")
     @Column(name = "sellPrice")
     private Double sellPrice;
+
     private String benchmark;
     @Column(name = "tradeDate")
     private LocalDateTime tradeDate;
@@ -51,6 +65,7 @@ public class Trade {
     private String status;
     private String trader;
     private String book;
+
     @Column(name = "creationName")
     private String creationName;
     @Column(name = "creationDate")
@@ -59,6 +74,7 @@ public class Trade {
     private String revisionName;
     @Column(name = "revisionDate")
     private LocalDateTime revisionDate;
+
     @Column(name = "dealName")
     private String dealName;
     @Column(name = "dealType")
@@ -67,6 +83,13 @@ public class Trade {
     private String sourceListId;
     private String side;
 
+    /**
+     * Crée un {@code Trade} minimal avec un compte et un type.
+     * La quantité à l'achat est initialisée à {@code 0}.
+     *
+     * @param tradeAccount compte sur lequel l'ordre est passé
+     * @param type         type d'instrument ou de transaction
+     */
     public Trade(String tradeAccount, String type) {
         this.account = tradeAccount;
         this.type = type;

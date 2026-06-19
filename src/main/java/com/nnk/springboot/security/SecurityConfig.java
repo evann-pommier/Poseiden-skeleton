@@ -10,6 +10,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
+/**
+ * Configuration Spring Security de l'application.
+ *
+ * <p>Définit les règles d'accès, le formulaire de login, la gestion de session
+ * (une session active par utilisateur) et l'encodage BCrypt des mots de passe.</p>
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {

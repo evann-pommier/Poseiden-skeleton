@@ -16,25 +16,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
 
+/**
+ * Contrôleur CRUD pour la gestion des utilisateurs ({@link User}).
+ *
+ * <p>Les mots de passe sont systématiquement encodés en BCrypt par
+ * {@link UserService} avant toute persistance. En cas d'identifiant introuvable,
+ * le service lève une {@link com.nnk.springboot.exceptions.EntityNotFoundException}
+ * qui redirige vers {@code error/404}.</p>
+ */
 @Controller
 public class UserController {
+
     private final UserService service;
-    UserController(UserService service){
+
+    UserController(UserService service) {
         this.service = service;
     }
 
+    /** Affiche la liste de tous les utilisateurs. */
     @RequestMapping("/user/list")
     public String home(Model model) {
         model.addAttribute("users", service.findAll());
         return "user/list";
     }
 
+    /** Affiche le formulaire de création d'un nouvel utilisateur. */
     @GetMapping("/user/add")
     public String addUser(Model model) {
         model.addAttribute("user", new User());
         return "user/add";
     }
 
+    /**
+     * Valide et persiste un nouvel utilisateur.
+     * Réaffiche le formulaire en cas d'erreur de validation ({@code @NotBlank}
+     * sur {@code username}, {@code fullname} et {@code role} ; {@code @Pattern}
+     * sur {@code password} qui exige au moins 8 caractères dont une majuscule,
+     * un chiffre et un symbole). Le mot de passe est encodé en BCrypt par le service.
+     */
     @PostMapping("/user/validate")
     public String validate(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
@@ -44,6 +63,12 @@ public class UserController {
         return "redirect:/user/list";
     }
 
+    /**
+     * Affiche le formulaire de modification de l'utilisateur identifié par {@code id}.
+     *
+     * <p>Le mot de passe est vidé avant d'alimenter le formulaire afin de ne pas
+     * exposer le hash BCrypt dans la vue.</p>
+     */
     @GetMapping("/user/update/{id}")
     public String showUpdateForm(@PathVariable Integer id, Model model) {
         User user = service.findById(id);
@@ -52,6 +77,11 @@ public class UserController {
         return "user/update";
     }
 
+    /**
+     * Valide et applique la mise à jour de l'utilisateur identifié par {@code id}.
+     * Le nouveau mot de passe est réencodé en BCrypt par le service, même en cas
+     * de modification partielle du profil.
+     */
     @PostMapping("/user/update/{id}")
     public String updateUser(@PathVariable Integer id, @Valid User user, BindingResult result) {
         if (result.hasErrors()) {
@@ -61,6 +91,7 @@ public class UserController {
         return "redirect:/user/list";
     }
 
+    /** Supprime l'utilisateur identifié par {@code id} après vérification de son existence. */
     @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable Integer id) {
         service.deleteById(id);
