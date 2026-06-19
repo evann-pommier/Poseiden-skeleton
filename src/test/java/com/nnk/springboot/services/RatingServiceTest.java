@@ -58,6 +58,7 @@ class RatingServiceTest {
     @Test
     void updateShouldSetIdAndSave() {
         Rating rating = new Rating("B", "B", "B", 2);
+        when(repository.findById(1)).thenReturn(Optional.of(rating));
         when(repository.save(rating)).thenReturn(rating);
 
         Rating result = service.update(1, rating);

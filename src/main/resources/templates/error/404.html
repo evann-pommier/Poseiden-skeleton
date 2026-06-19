@@ -4,20 +4,20 @@
       lang="fr">
 <head>
     <meta charset="utf-8"/>
-    <title>500 - Server Error</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <title>404 - Not Found</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
 <div class="container">
 
     <div class="row">
-        <h2>500 - Internal Server Error</h2>
+        <h2>404 - Resource Not Found</h2>
     </div>
 
     <div class="row">
         <div class="col-sm-12">
-            <div class="alert alert-danger" th:text="${errorMessage}">
-                An unexpected error occurred.
+            <div class="alert alert-danger" th:text="${errorMsg}">
+                The requested resource was not found.
             </div>
             <a class="btn btn-primary btn-sm" href="/bidList/list">Back to Bid List</a>
         </div>

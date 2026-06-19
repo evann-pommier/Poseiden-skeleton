@@ -58,6 +58,7 @@ class RuleNameServiceTest {
     @Test
     void updateShouldSetIdAndSave() {
         RuleName ruleName = new RuleName("Name", "Description", "{}", "Template", "SQL", "Part");
+        when(repository.findById(1)).thenReturn(Optional.of(ruleName));
         when(repository.save(ruleName)).thenReturn(ruleName);
 
         RuleName result = service.update(1, ruleName);

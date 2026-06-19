@@ -27,6 +27,7 @@ public class RuleNameService {
     }
 
     public RuleName update(Integer id, RuleName ruleName) {
+        findById(id);
         ruleName.setId(id);
         return repository.save(ruleName);
     }

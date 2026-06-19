@@ -28,6 +28,7 @@ public class RatingService {
     }
 
     public Rating update(Integer id, Rating rating) {
+        findById(id);
         rating.setId(id);
         return repository.save(rating);
     }

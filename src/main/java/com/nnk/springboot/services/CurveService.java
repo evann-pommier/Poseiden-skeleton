@@ -24,11 +24,13 @@ public class CurveService {
     public void save(CurvePoint curvePoint) {
         repository.save(curvePoint);
     }
+
     public CurvePoint update(Integer id,CurvePoint curvePoint) {
         findById(id);
         curvePoint.setId(id);
         return repository.save(curvePoint);
     }
+
     public void deleteById(int id) {
         findById(id);
         repository.deleteById(id);

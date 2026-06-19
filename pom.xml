@@ -12,8 +12,8 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>net.guides.springboothelloworld</groupId>
-	<artifactId>spring-boot-skeleton</artifactId>
+	<groupId>net.nnk</groupId>
+	<artifactId>poseidon-capital-solutions</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-skeleton</name>
 	<description>Demo project for Spring Boot</description>
@@ -98,7 +98,7 @@
 			<groupId>org.jetbrains</groupId>
 			<artifactId>annotations</artifactId>
 			<version>17.0.0</version>
-			<scope>compile</scope>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
