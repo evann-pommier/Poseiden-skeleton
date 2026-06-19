@@ -1,6 +1,7 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.RuleName;
+import com.nnk.springboot.security.CustomUserDetailsService;
 import com.nnk.springboot.services.RuleNameService;
 import org.jetbrains.annotations.Contract;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(RuleNameController.class)
 @AutoConfigureMockMvc(addFilters = false)
+@WithMockUser
 class RuleNameControllerTest {
 
     @Autowired
@@ -34,8 +36,10 @@ class RuleNameControllerTest {
     @MockBean
     private RuleNameService service;
 
+    @MockBean
+    private CustomUserDetailsService customUserDetailsService;
+
     @Test
-    @WithMockUser
     void homeShouldDisplayList() throws Exception {
         when(service.findAll()).thenReturn(List.of(new RuleName("Name","Description","{}","Template","SQL","Part")));
 
@@ -46,7 +50,6 @@ class RuleNameControllerTest {
     }
 
     @Test
-    @WithMockUser
     void addFormShouldDisplayForm() throws Exception {
         mockMvc.perform(get("/ruleName/add"))
                 .andExpect(status().isOk())

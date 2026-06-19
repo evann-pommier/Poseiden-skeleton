@@ -15,45 +15,57 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "trade")
+@Table(name = "Trade")
 public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TradeId")
-    Integer tradeId;
+    private Integer tradeId;
 
     @NotBlank(message = "Account is mandatory")
-    String account;
+    private String account;
 
     @NotBlank(message = "Type is mandatory")
-    String type;
+    private String type;
 
     @NotNull(message = "Buy Quantity is mandatory")
     @PositiveOrZero(message = "Buy Quantity must be numeric and positive or zero")
-    Double buyQuantity;
+    @Column(name = "buyQuantity")
+    private Double buyQuantity;
 
     @PositiveOrZero(message = "Sell Quantity must be numeric and positive or zero")
-    Double sellQuantity;
+    @Column(name = "sellQuantity")
+    private Double sellQuantity;
 
     @PositiveOrZero(message = "Buy Price must be numeric and positive or zero")
-    Double buyPrice;
+    @Column(name = "buyPrice")
+    private Double buyPrice;
 
     @PositiveOrZero(message = "Sell Price must be numeric and positive or zero")
-    Double sellPrice;
-    String benchmark;
-    LocalDateTime tradeDate;
-    String security;
-    String status;
-    String trader;
-    String book;
-    String creationName;
-    LocalDateTime creationDate;
-    String revisionName;
-    LocalDateTime revisionDate;
-    String dealName;
-    String dealType;
-    String sourceListId;
-    String side;
+    @Column(name = "sellPrice")
+    private Double sellPrice;
+    private String benchmark;
+    @Column(name = "tradeDate")
+    private LocalDateTime tradeDate;
+    private String security;
+    private String status;
+    private String trader;
+    private String book;
+    @Column(name = "creationName")
+    private String creationName;
+    @Column(name = "creationDate")
+    private LocalDateTime creationDate;
+    @Column(name = "revisionName")
+    private String revisionName;
+    @Column(name = "revisionDate")
+    private LocalDateTime revisionDate;
+    @Column(name = "dealName")
+    private String dealName;
+    @Column(name = "dealType")
+    private String dealType;
+    @Column(name = "sourceListId")
+    private String sourceListId;
+    private String side;
 
     public Trade(String tradeAccount, String type) {
         this.account = tradeAccount;

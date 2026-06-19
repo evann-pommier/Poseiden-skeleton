@@ -1,11 +1,14 @@
 package com.nnk.springboot.security;
 
+import jakarta.servlet.http.HttpSessionListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
 @EnableWebSecurity
@@ -32,6 +35,13 @@ public class SecurityConfig {
                         .failureUrl("/app/login?error=true")
                         .permitAll()
                 )
+                .sessionManagement(session -> session
+                        .sessionFixation(SessionManagementConfigurer.SessionFixationConfigurer::migrateSession)
+                        .invalidSessionUrl("/app/login?invalidSession=true")
+                        .maximumSessions(1)
+                        .maxSessionsPreventsLogin(false)
+                        .expiredUrl("/app/login?expired=true")
+                )
                 .logout(logout -> logout
                         .logoutUrl("/app/logout")
                         .logoutSuccessUrl("/app/login?logout=true")
@@ -40,9 +50,21 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .exceptionHandling(exception -> exception
-                        .accessDeniedPage("/app/error")
+                        .accessDeniedHandler((request, response, accessDeniedException) ->
+                                response.sendRedirect("/app/login?expired=true"))
                 )
                 .build();
+    }
+
+    /**
+     * Publishes HTTP session lifecycle events so Spring Security can track
+     * active and expired sessions correctly.
+     *
+     * @return the HTTP session event publisher
+     */
+    @Bean
+    public HttpSessionListener httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
     }
 
     /**

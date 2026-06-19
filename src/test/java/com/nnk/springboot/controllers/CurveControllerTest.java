@@ -1,6 +1,7 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.CurvePoint;
+import com.nnk.springboot.security.CustomUserDetailsService;
 import com.nnk.springboot.services.CurveService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(CurveController.class)
 @AutoConfigureMockMvc(addFilters = false)
+@WithMockUser
 class CurveControllerTest {
 
     @Autowired
@@ -31,8 +33,10 @@ class CurveControllerTest {
     @MockBean
     private CurveService service;
 
+    @MockBean
+    private CustomUserDetailsService customUserDetailsService;
+
     @Test
-    @WithMockUser
     void homeShouldDisplayList() throws Exception {
 
         when(service.findAll()).thenReturn(
@@ -46,7 +50,6 @@ class CurveControllerTest {
     }
 
     @Test
-    @WithMockUser
     void addFormShouldDisplayForm() throws Exception {
 
         mockMvc.perform(get("/curvePoint/add"))

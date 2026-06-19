@@ -1,6 +1,7 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.Rating;
+import com.nnk.springboot.security.CustomUserDetailsService;
 import com.nnk.springboot.services.RatingService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc(addFilters = false)
 @WebMvcTest(RatingController.class)
+@WithMockUser
 class RatingControllerTest {
 
     @Autowired
@@ -31,8 +33,10 @@ class RatingControllerTest {
     @MockBean
     private RatingService service;
 
+    @MockBean
+    private CustomUserDetailsService customUserDetailsService;
+
     @Test
-    @WithMockUser
     void homeShouldDisplayList() throws Exception {
 
         when(service.findAll()).thenReturn(
@@ -46,7 +50,7 @@ class RatingControllerTest {
     }
 
     @Test
-    @WithMockUser
+
     void addFormShouldDisplayForm() throws Exception {
 
         mockMvc.perform(get("/rating/add"))

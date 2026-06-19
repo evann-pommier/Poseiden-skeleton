@@ -14,6 +14,7 @@ C:\Users\evann\eclipse-workspace\Poseiden-skeleton\src\main\java\com\nnk\springb
 C:\Users\evann\eclipse-workspace\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\BidListService.java
 C:\Users\evann\eclipse-workspace\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\RuleNameService.java
 C:\Users\evann\eclipse-workspace\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\CurvePoint.java
+C:\Users\evann\eclipse-workspace\Poseiden-skeleton\src\main\java\com\nnk\springboot\security\CustomUserDetailsService.java
 C:\Users\evann\eclipse-workspace\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\BidList.java
 C:\Users\evann\eclipse-workspace\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\RatingRepository.java
 C:\Users\evann\eclipse-workspace\Poseiden-skeleton\src\main\java\com\nnk\springboot\exceptions\GlobalExceptionHandler.java

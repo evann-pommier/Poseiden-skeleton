@@ -13,21 +13,25 @@ import jakarta.validation.constraints.Positive;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "rating")
+@Table(name = "Rating")
 public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RatingId")
-    Integer id;
+    @Column(name = "Id")
+    private Integer id;
     @NotBlank(message = "Moodys Rating is mandatory")
-    String moodysRating;
+    @Column(name = "moodysRating")
+    private String moodysRating;
     @NotBlank(message = "SandP Rating is mandatory")
-    String sandPRating;
+    @Column(name = "sandPRating")
+    private String sandPRating;
     @NotBlank(message = "Fitch Rating is mandatory")
-    String fitchRating;
+    @Column(name = "fitchRating")
+    private String fitchRating;
     @NotNull(message = "Order Number is mandatory")
     @Positive(message = "Order Number must be a positive number")
-    Integer orderNumber;
+    @Column(name = "orderNumber")
+    private Integer orderNumber;
 
     public Rating(String moodysRating, String sandPRating, String fitchRating, Integer orderNumber) {
         this.moodysRating = moodysRating;

@@ -11,24 +11,26 @@ import jakarta.validation.constraints.NotBlank;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "rulename")
+@Table(name = "RuleName")
 public class RuleName {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RuleNameId")
-    Integer id;
+    @Column(name = "Id")
+    private Integer id;
     @NotBlank(message = "Name is mandatory")
-    String name;
+    private String name;
     @NotBlank(message = "Description is mandatory")
-    String description;
+    private String description;
     @NotBlank(message = "Json is mandatory")
-    String json;
+    private String json;
     @NotBlank(message = "Template is mandatory")
-    String template;
+    private String template;
     @NotBlank(message = "SqlStr is mandatory")
-    String sqlStr;
+    @Column(name = "sqlStr")
+    private String sqlStr;
     @NotBlank(message = "SqlPart is mandatory")
-    String sqlPart;
+    @Column(name = "sqlPart")
+    private String sqlPart;
 
     public RuleName(String name, String description, String json, String template, String sqlStr, String sqlPart) {
         this.name = name;

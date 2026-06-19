@@ -1,6 +1,7 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
+import com.nnk.springboot.security.CustomUserDetailsService;
 import com.nnk.springboot.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(UserController.class)
 @AutoConfigureMockMvc(addFilters = false)
+@WithMockUser
 class UserControllerTest {
 
     @Autowired
@@ -31,8 +33,10 @@ class UserControllerTest {
     @MockBean
     private UserService service;
 
+    @MockBean
+    private CustomUserDetailsService customUserDetailsService;
+
     @Test
-    @WithMockUser
     void homeShouldDisplayList() throws Exception {
 
         User user = new User();
@@ -47,7 +51,6 @@ class UserControllerTest {
     }
 
     @Test
-    @WithMockUser
     void addFormShouldDisplayForm() throws Exception {
 
         mockMvc.perform(get("/user/add"))

@@ -15,46 +15,56 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "bidlist")
+@Table(name = "BidList")
 public class BidList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BidListId")
-    Integer bidListId;
+    private Integer bidListId;
 
     @NotBlank(message = "Account is mandatory")
-    String account;
+    private String account;
 
     @NotBlank(message = "Type is mandatory")
-    String type;
+    private String type;
 
-    @NotNull(message = "Bid Quantity is mandatory")
+    @NotNull
     @PositiveOrZero(message = "Bid Quantity must be numeric and positive or zero")
-    Double bidQuantity;
+    @Column(name = "bidQuantity")
+    private Double bidQuantity;
 
     @PositiveOrZero(message = "Ask Quantity must be numeric and positive or zero")
-    Double askQuantity;
+    @Column(name = "askQuantity")
+    private Double askQuantity;
 
     @PositiveOrZero(message = "Bid must be numeric and positive or zero")
-    Double bid;
+    private Double bid;
 
     @PositiveOrZero(message = "Ask must be numeric and positive or zero")
-    Double ask;
-    String benchmark;
-    LocalDateTime bidListDate;
-    String commentary;
-    String security;
-    String status;
-    String trader;
-    String book;
-    String creationName;
-    LocalDateTime creationDate;
-    String revisionName;
-    LocalDateTime revisionDate;
-    String dealName;
-    String dealType;
-    String sourceListId;
-    String side;
+    private Double ask;
+    private String benchmark;
+    @Column(name = "bidListDate")
+    private LocalDateTime bidListDate;
+    private String commentary;
+    private String security;
+    private String status;
+    private String trader;
+    private String book;
+    @Column(name = "creationName")
+    private String creationName;
+    @Column(name = "creationDate")
+    private LocalDateTime creationDate;
+    @Column(name = "revisionName")
+    private String revisionName;
+    @Column(name = "revisionDate")
+    private LocalDateTime revisionDate;
+    @Column(name = "dealName")
+    private String dealName;
+    @Column(name = "dealType")
+    private String dealType;
+    @Column(name = "sourceListId")
+    private String sourceListId;
+    private String side;
 
 
     public BidList(String account, String type, Double bidQuantity) {

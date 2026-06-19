@@ -12,6 +12,15 @@
 
             <h2 class="text-center mb-4">Login</h2>
 
+
+            <div th:if="${param.expired}" class="alert alert-warning">
+                Votre session a expiré car une autre connexion a été ouverte.
+            </div>
+
+            <div th:if="${param.invalidSession}" class="alert alert-warning">
+                Votre session n'est plus valide. Veuillez vous reconnecter.
+            </div>
+
             <div th:if="${param.error}" class="alert alert-danger">
                 Invalid username or password.
             </div>

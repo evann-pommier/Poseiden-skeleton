@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "curvepoint")
+@Table(name = "CurvePoint")
 public class CurvePoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CurvePointId")
+    @Column(name = "Id")
     private Integer id;
 
     @NotNull(message = "Curve Id is mandatory")
@@ -26,7 +26,7 @@ public class CurvePoint {
     private Double term;
 
     @NotNull(message = "Value is mandatory")
-    @Column(name = "curve_value")
+    @Column(name = "`value`")
     private Double value;
 
     private LocalDateTime creationDate;

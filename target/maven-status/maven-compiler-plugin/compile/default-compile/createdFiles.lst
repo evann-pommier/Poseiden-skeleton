@@ -27,4 +27,5 @@ com\nnk\springboot\controllers\RuleNameController.class
 com\nnk\springboot\security\SecurityConfig.class
 com\nnk\springboot\controllers\BidListController.class
 com\nnk\springboot\repositories\CurvePointRepository.class
+com\nnk\springboot\security\CustomUserDetailsService.class
 com\nnk\springboot\repositories\RuleNameRepository.class
